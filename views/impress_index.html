@@ -29,31 +29,35 @@
       background-repeat: no-repeat;
     }
 
-    .step {
-      border: solid 2px red;
-      opacity: 40%;
+    .active.step {
+      border: solid 2px rgb(0, 8, 255);
     }
 
-    .step>p {
-      color: aliceblue;
-      width: max-content;
-      font-size: 2em;
+    .step-content {
+      display: flex;
+      width: 1186px;
+      height: 667px;
+      background-color: rgb(0, 0, 0);
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
     }
 
-    .step-div {
-      width: 900px;
-      height: 700px;
-      background-color: #e14d4d;
+    .step-content-font {
+      min-width: max-content;
+      color: white;
     }
 
-    .step-div>:first-child {
+    .step-content>:first-child {
       display: inline-block;
       color: aliceblue;
       font-size: 2em;
-      /* width: max-content; */
+      width: max-content;
     }
 
-    .step-div>:nth-child(2) {
+    .active .step-content>:nth-child(2) {
       background-image: url('../static/images/background/image-3ec3fa57-9d87-499c-b5cb-87199278f7da-2880-5120.jpeg');
       background-repeat: round;
       width: 100%;
@@ -65,49 +69,56 @@
 
 <body class="impress-not-supported">
   <div id="impress" data-width="1920" data-height="1080" data-perspective="500">
-    <div class="step slide" data-x="-1000" data-y="-1500" data-z="10">
-      <div class="step-div">
+    <div class="step slide" data-x="0" data-y="0" data-z="0">
+      <div class="step-content">
         <q>情歌很好听，清风很温柔，星星也很美丽，但更多的快乐是来自你</q>
         <div></div>
       </div>
     </div>
-    <!-- data-transition-duration="2000" 过渡持续时间 
-    定义步进元素相对于其他步进元素的缩放倍数。例如， data-scale="4" 表示该元素看起来比其他元素大 4 倍。从演示和过渡的角度来看，这意味着必须将其缩小（4 倍）才能恢复到正确的大小。
-    表示元素相对于 360 度顺时针旋转的量。
-    data-rotate="90" 
-    -->
-    <div class="step slide" data-x="0" data-y="-1500" data-rotate-z="0" data-transition-duration="2000">
-      <div class="step-div">
+    <div class="step slide" data-x="1920" data-transition-duration="2000">
+      <div class="step-content">
         <q>难过记得回头，我一直都在</q>
         <div></div>
       </div>
     </div>
-    <div class="step slide" data-x="1000" data-y="-1500">
-      <div class="step-div">
-        <q>难以忘记初次见面的感觉，我被一种神奇的东西吸引，那时我的心七上八下的，我相信这就是一见钟情</q>
+    <div class="step slide" data-x="3840">
+      <div class="step-content">
+        <q>难以忘记初次见面的感觉，我被一种神奇的东西吸引</q>
+        <q>那时我的心七上八下的，我相信这就是一见钟情</q>
         <div></div>
       </div>
-
     </div>
-    <div class="step" data-rel-rotate-y="45" data-scale="1" data-y="-500" data-rotate-y="45" data-z="-500">
-      <p>
-        <span class="footnote">
-          <sup>☆</sup>
-          暖雨晴风初破冻，柳眼梅腮，已觉春心动。酒意诗情谁与共？
-        </span>
-      </p>
+    <div class="step" data-x="5760" data-rel-rotate-y="45" data-scale="1" data-y="-500" data-rotate-y="45"
+      data-z="-500">
+      <div class="step-content-font">
+        <p>
+          <span class="footnote">
+            <sup>☆</sup>
+            暖雨晴风初破冻，柳眼梅腮，已觉春心动。酒意诗情谁与共？
+          </span>
+        </p>
+      </div>
     </div>
     <div class="step" data-rel-rotate-y="-45" data-scale="1">
-      <p>绣面芙蓉一笑开。斜偎宝鸭衬香腮。眼波才动被人猜。</p>
-      <p>一面风情深有韵，半笺娇恨寄幽怀。月移花影约重来。</p>
+      <div class="step-content-font">
+        <p>绣面芙蓉一笑开。斜偎宝鸭衬香腮。眼波才动被人猜。</p>
+        <p>一面风情深有韵，半笺娇恨寄幽怀。月移花影约重来。</p>
+      </div>
     </div>
     <div class="step" data-x="6000" data-y="4000" data-scale="2">
-      <p>我会努力让你成为世上第二幸福的人，因为</p>
+      <div class="step-content-font">
+        <p>我会努力让你成为世上第二幸福的人，因为</p>
+      </div>
     </div>
     <div class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
-      <p>遇见你就是我最大的幸福</p>
+      <div class="step-content-font">
+        <p>遇见你就是我最大的幸福</p>
+      </div>
     </div>
-    <div class="step" data-x="3000" data-y="1500" data-scale="10">
+    <div class="step" data-x="6400" data-y="4500" data-scale="2">
+      <div class="step-content-font">
+        <p>hhh</p>
+      </div>
     </div>
   </div>
   <!-- count particles -->

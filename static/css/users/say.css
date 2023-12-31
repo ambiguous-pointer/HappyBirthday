@@ -24,10 +24,17 @@
     width: 80%;
     height: 80%;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.9);
     transition: width 1s, height 1s, transform 1s;
     transition-duration: 0.5s;
     transition-delay: 0.5s;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -39,22 +46,28 @@
     justify-content: center;
     align-items: center;
     height: inherit;
-    background-image: url('../../images/background/image-02966a12-06ec-4389-9a8e-43e32235e9c2-720-1259.jpg');
+    background-image: url('../../images/background/image-b128294c-133c-4646-a018-e30825430991-1046-1743.jpg');
     background-size: cover;
     opacity: 1;
 }
 
 .cont {
-    background-color: white;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
-    width: 20%;
+    width: 25%;
     margin: 10px;
     padding: 10px;
-    min-height: 50%;
+    min-height: 70%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .cont p {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-family: "KaiTi", Arial, sans-serif;
     font-weight: bolder;
     line-height: 1.5;
@@ -63,7 +76,7 @@
 }
 
 .p-class {
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-family: "KaiTi", Arial, sans-serif;
     font-weight: bolder;
     line-height: 1.5;

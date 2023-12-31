@@ -1,4 +1,5 @@
 $(function () {
+    let arr = [0, 0, 0, 0, 0]
     $('#dowebok').fullpage({
         'navigation': true,
         'navigationPosition': "right",
@@ -15,16 +16,79 @@ $(function () {
               direction: (String) 它将根据滚动方向采用up或down值。
           */
         "onLeave": function (origin, destination, direction) {
+            console.log("origin, destination, direction", origin, destination, direction);
             switch (origin) {
                 case 1:
-                    var typed = new Typed('#c202', {
-                        stringsElement: '#c202c',
-                        typeSpeed: 50,
-                        showCursor: false,
-                    });
+                    console.log("arr[origin]", arr[origin]);
+                    if (arr[origin] == 0) {
+                        // var typed = new Typed('#c201', {
+                        //     stringsElement: '#c201c',
+                        //     typeSpeed: 50,
+                        //     showCursor: false,
+                        // });
+                        // var typed = new Typed('#c202', {
+                        //     stringsElement: '#c202c',
+                        //     typeSpeed: 50,
+                        //     showCursor: false,
+                        // });
+                        var typed = new Typed('#c203', {
+                            stringsElement: '#c203c',
+                            typeSpeed: 50,
+                            showCursor: false,
+                        });
+                        arr[origin] = -1;
+                    }
+                    break;
+                case 2:
+                // console.log("arr[origin]",arr[origin]);
+                // if(arr[origin]==0){
+                //     var typed = new Typed('#c301', {
+                //         stringsElement: '#c301c',
+                //         typeSpeed: 50,
+                //         showCursor: false,
+                //     });
+                //     var typed = new Typed('#c302', {
+                //         stringsElement: '#c302c',
+                //         typeSpeed: 50,
+                //         showCursor: false,
+                //     });
+                //     var typed = new Typed('#c303', {
+                //         stringsElement: '#c303c',
+                //         typeSpeed: 50,
+                //         showCursor: false,
+                //     });
+                //     arr[origin]=-1;
+                // }
+                // break;
+                case 3:
+                    if (arr[origin] == 0) {
+                        // var typed = new Typed('#c401', {
+                        //     stringsElement: '#c401c',
+                        //     typeSpeed: 50,
+                        //     showCursor: false,
+                        // });
+                        arr[origin] = -1;
+                    }
                     break;
                 case 4:
-                    setTimeout(function () { location.href = "index.html"; }, 500);
+                    setTimeout(function () { location.href = "impress_index.html"; }, 1500);
+                    console.log("arr[origin]", arr[origin]);
+                    if (arr[origin] == 0) {
+                        // var typed = new Typed('#c201', {
+                        //     stringsElement: '#c201c',
+                        //     typeSpeed: 50,
+                        //     showCursor: false,
+                        // });
+                        // var typed = new Typed('#c202', {
+                        //     stringsElement: '#c202c',
+                        //     typeSpeed: 50,
+                        //     showCursor: false,
+                        // });
+                        arr[origin] = -1;
+                    }
+                    break;
+                case 5:
+                    
                     break;
                 default:
                     break;
