@@ -1,0 +1,72 @@
+@keyframes expandShape {
+    from {
+        margin-bottom: 100%;
+    }
+
+    to {}
+}
+
+
+.shape {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    animation-duration: 2s;
+    animation-name: expandShape;
+    /* animation-iteration-count: infinite; */
+    transition-timing-function: cubic-bezier(0.31, 0.2, 0.58, 1);
+}
+
+/* 定义一个圆角矩形样式 */
+.rectangle {
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    transition: width 1s, height 1s, transform 1s;
+    transition-duration: 0.5s;
+    transition-delay: 0.5s;
+}
+
+
+.box-cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    background-image: url('../../images/background/image-02966a12-06ec-4389-9a8e-43e32235e9c2-720-1259.jpg');
+    background-size: cover;
+    opacity: 1;
+}
+
+.cont {
+    background-color: white;
+    border-radius: 10px;
+    width: 20%;
+    margin: 10px;
+    padding: 10px;
+    min-height: 50%;
+}
+
+.cont p {
+    font-size: 1.5rem;
+    font-family: "KaiTi", Arial, sans-serif;
+    font-weight: bolder;
+    line-height: 1.5;
+    text-align: center;
+    color: black;
+}
+
+.p-class {
+    font-size: 1.5rem;
+    font-family: "KaiTi", Arial, sans-serif;
+    font-weight: bolder;
+    line-height: 1.5;
+    text-align: center;
+    color: black;
+}
