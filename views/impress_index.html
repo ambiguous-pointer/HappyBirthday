@@ -47,6 +47,7 @@
 
     .step-content-font {
       min-width: max-content;
+      font-size: 2rem;
       color: white;
     }
 
@@ -105,6 +106,61 @@
         <p>一面风情深有韵，半笺娇恨寄幽怀。月移花影约重来。</p>
       </div>
     </div>
+    <div class="step" data-x="-6000" data-y="-4000" data-scale="2">
+      <div class="step-content-font">
+        <p>孤灯相映，忽而思卿一别三日，已似三秋</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>君亦思卿，良辰美景惜卿不在旁，相思无因见，怅望凉风前</p>
+      </div>
+    </div>
+    <div class="step" data-x="-2000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>我希望你能喜欢春天</p>
+      </div>
+    </div>
+    <div class="step" data-x="-4000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>我愿你是蓬勃的，希望我们是两朵开在山崖上的明黄色小花</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-2920" data-scale="2">
+      <div class="step-content-font">
+        <p>我想你能知道，你是我贫瘠灵魂中微弱的生命力，是我还未到来的春天</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-4920" data-scale="2">
+      <div class="step-content-font">
+        <p>久经这一程风马云车的赶，才敢与你说一声迟来未晚的慌张</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>且敬我生命之山 恒古长青</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>且敬你踏过千山 得悟悲欢</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>未见你时，头脑清晰，可你向我跑来，风瞬间吹乱了思绪</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>我会支持你，相信你，保护你！你开心我便开心，你不高兴我也会很难过！</p>
+      </div>
+    </div>
+    <div class="step" data-x="-6000" data-y="-5920" data-scale="2">
+      <div class="step-content-font">
+        <p>在以后的日子里，也许有很的多无法确定但唯一可以确定的是，我会一直珍惜你</p>
+      </div>
+    </div>
     <div class="step" data-x="6000" data-y="4000" data-scale="2">
       <div class="step-content-font">
         <p>我会努力让你成为世上第二幸福的人，因为</p>
@@ -139,6 +195,10 @@
   <script type="text/javascript" src="../static/js/impress.js"></script>
   <script>
     impress().init();
+    var audio = document.getElementById("myAudio");
+    audio.play();
+    audio.playbackRate = 1.5;
+
     var rootElement = document.getElementById("impress");
     rootElement.addEventListener("impress:stepleave", function (event) {
       var currentStep = event.target;
@@ -148,7 +208,12 @@
     rootElement.addEventListener("impress:stepenter", function (event) {
       var currentStep = event.target;
       console.log("Entered the Step Element '" + currentStep.id + "'");
+      if (currentStep.id == "ring2-8") {
+        setTimeout(() => { location.href = "./impress_index.html"; }, 2000);
+      }
     });
+  </script>
+  <script>
     var count_particles, stats, update;
     stats = new Stats;
     stats.setMode(0);
@@ -167,6 +232,16 @@
     };
     requestAnimationFrame(update);
   </script>
+  <script>
+    $(function () {
+      $(window).click(function () {
+        $('audio')[0].play();
+      });
+      window.audio = $('audio')[0].play();
+    })
+  </script>
+  <audio src="../static/musics/夏日往事.m4a" autoplay="autoplay" loop="loop"></audio>
+  
 </body>
 
 </html>

@@ -71,7 +71,7 @@ $(function () {
                     }
                     break;
                 case 4:
-                    setTimeout(function () { location.href = "impress_index.html"; }, 1500);
+                    setTimeout(function () { location.href = "impress_images_show.html"; }, 1500);
                     console.log("arr[origin]", arr[origin]);
                     if (arr[origin] == 0) {
                         // var typed = new Typed('#c201', {

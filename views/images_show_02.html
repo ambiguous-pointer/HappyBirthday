@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Animated Fragment Slideshow | Codrops</title>
+    <meta name="description"
+        content="A slider made with the Pieces library where slides are animated in a fragmented look." />
+    <meta name="keywords" content="slideshow, slider, pieces, fragments, animation, svg, canvas, javascript" />
+    <meta name="author" content="Luis Manuel for Codrops" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script>
+        document.documentElement.className = "js";
+        var supportsCssVars = function () {
+            var e, t = document.createElement("style");
+            return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t),
+                e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")),
+                t.parentNode.removeChild(t), e
+        };
+        supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
+    </script>
+    <style>
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        nav,
+        section,
+        summary {
+            display: block;
+        }
+
+        audio,
+        canvas,
+        video {
+            display: inline-block;
+        }
+
+        audio:not([controls]) {
+            display: none;
+            height: 0;
+        }
+
+        [hidden] {
+            display: none;
+        }
+
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        a:focus {
+            outline: thin dotted;
+        }
+
+        a:active,
+        a:hover {
+            outline: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+
+        abbr[title] {
+            border-bottom: 1px dotted;
+        }
+
+        b,
+        strong {
+            font-weight: bold;
+        }
+
+        dfn {
+            font-style: italic;
+        }
+
+        hr {
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 0;
+        }
+
+        mark {
+            background: #ff0;
+            color: #000;
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: monospace, serif;
+            font-size: 1em;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        q {
+            quotes: "\201C" "\201D" "\2018" "\2019";
+        }
+
+        small {
+            font-size: 80%;
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+
+        sup {
+            top: -0.5em;
+        }
+
+        sub {
+            bottom: -0.25em;
+        }
+
+        img {
+            border: 0;
+        }
+
+        svg:not(:root) {
+            overflow: hidden;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        fieldset {
+            border: 1px solid #c0c0c0;
+            margin: 0 2px;
+            padding: 0.35em 0.625em 0.75em;
+        }
+
+        legend {
+            border: 0;
+            padding: 0;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 100%;
+            margin: 0;
+        }
+
+        button,
+        input {
+            line-height: normal;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button,
+        html input[type="button"],
+        input[type="reset"],
+        input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        button[disabled],
+        html input[disabled] {
+            cursor: default;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        input[type="search"] {
+            -webkit-appearance: textfield;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+
+        textarea {
+            overflow: auto;
+            vertical-align: top;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #fff;
+        }
+
+        body {
+            --color-text: #fff;
+            --color-link: #f0f0f0;
+            --color-link-hover: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            color: var(--color-text);
+            background: linear-gradient(115deg, rgba(86, 216, 228, 1) 5%, rgba(159, 1, 234, 1) 95%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-link);
+            outline: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--color-link-hover);
+        }
+
+        a:focus,
+        button:focus {
+            outline: none;
+        }
+
+        .hidden {
+            position: absolute;
+            overflow: hidden;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        /* Icons */
+        .icon {
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            margin: 0 auto;
+            fill: currentColor;
+        }
+
+        .icon--keyboard {
+            display: none;
+        }
+
+        main {
+            position: relative;
+            width: 100%;
+        }
+
+        .content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .content--fixed {
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            display: grid;
+            align-content: space-between;
+            width: 100%;
+            max-width: none;
+            min-height: 0;
+            height: 100vh;
+            padding: 1.5em;
+            pointer-events: none;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: auto auto 4em;
+            grid-template-areas: 'header ...'
+                '... ...'
+                'github demos';
+        }
+
+        .content--fixed a {
+            pointer-events: auto;
+        }
+
+        /* Header */
+        .codrops-header {
+            position: relative;
+            z-index: 100;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            align-items: center;
+            align-self: start;
+            grid-area: header;
+            justify-self: start;
+        }
+
+        .codrops-header__title {
+            font-size: 1em;
+            font-weight: bold;
+            margin: 0;
+            padding: 0.75em 0;
+        }
+
+        .info {
+            margin: 0 0 0 1.25em;
+            color: var(--color-info);
+        }
+
+        .github {
+            display: block;
+            align-self: end;
+            grid-area: github;
+            justify-self: start;
+        }
+
+        /* Top Navigation Style */
+        .codrops-links {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 0 1em 0 0;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .codrops-icon {
+            display: inline-block;
+            margin: 0.15em;
+            padding: 0.25em;
+        }
+
+        @media screen and (max-width: 55em) {
+            body {
+                overflow: auto;
+            }
+
+            .content {
+                flex-direction: column;
+                height: auto;
+                min-height: 0;
+                padding-bottom: 10em;
+            }
+
+            .content--fixed {
+                position: relative;
+                z-index: 1000;
+                display: block;
+                padding: 0.85em;
+            }
+
+            .codrops-header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .codrops-header__title {
+                font-weight: bold;
+                padding-bottom: 0.25em;
+                text-align: center;
+            }
+
+            .info {
+                margin: 0;
+            }
+
+            .github {
+                display: block;
+                margin: 1em auto;
+            }
+
+            .codrops-links {
+                margin: 0;
+            }
+        }
+    </style>
+    <style>
+        .pieces-slider {
+            position: relative;
+            text-align: center;
+            padding: 8rem 0;
+        }
+
+        .js .pieces-slider {
+            padding: 0;
+        }
+
+        /* Make all slides absolutes and hide them */
+        .js .pieces-slider__slide {
+            position: absolute;
+            right: 100%;
+        }
+
+        /* Define image dimensions and also hide them */
+        .pieces-slider__image {
+            max-width: 600px;
+            max-height: 400px;
+        }
+
+        .js .pieces-slider__image {
+            visibility: hidden;
+        }
+
+        /* Hide the titles */
+        .js .pieces-slider__text {
+            text-indent: -9999px;
+        }
+
+        /* Canvas with viewport width and height */
+        .js .pieces-slider__canvas {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            transition: 0.2s opacity;
+        }
+
+        /* Class for when we resize */
+        .pieces-slider__canvas--hidden {
+            opacity: 0;
+            transition-duration: 0.3s;
+        }
+
+        /* Navigation buttons */
+        .pieces-slider__button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100px;
+            height: 100px;
+            margin: -25px 0 0 0;
+            background-color: #5104ab;
+            color: #fff;
+            font-family: inherit;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.1s background-color;
+        }
+
+        .pieces-slider__button:hover {
+            background: #5f3abf;
+        }
+
+        .pieces-slider__button--next {
+            left: auto;
+            right: 0;
+        }
+
+        /* Hide the buttons when no JS */
+        .no-js .pieces-slider__button {
+            display: none;
+        }
+
+        /* Media queries with styles for smaller screens */
+        @media screen and (max-width: 720px) {
+            .pieces-slider__image {
+                max-width: 300px;
+            }
+        }
+
+        @media screen and (max-width: 55em) {
+            .pieces-slider__canvas {
+                width: 100vw;
+                height: 100vw;
+            }
+
+            .pieces-slider__button {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body class="demo-1">
+    <svg class="hidden">
+        <symbol id="icon-arrow" viewBox="0 0 24 24">
+            <title>arrow</title>
+            <polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 " />
+        </symbol>
+        <symbol id="icon-drop" viewBox="0 0 24 24">
+            <title>drop</title>
+            <path
+                d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z" />
+            <path
+                d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z" />
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 32.6 31.8">
+            <title>github</title>
+            <path
+                d="M16.3,0C7.3,0,0,7.3,0,16.3c0,7.2,4.7,13.3,11.1,15.5c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4C7.4,10.7,6.8,9,7.7,6.8c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C32.6,7.3,25.3,0,16.3,0z" />
+        </symbol>
+    </svg>
+    <main>
+        <div class="content">
+            <!-- Pieces Slider -->
+            <div class="pieces-slider">
+                <!-- Each slide with corresponding image and text -->
+                <div class="pieces-slider__slide">
+                    <img class="pieces-slider__image" src="../static/images/shan-shan/daily/IMG_0032.PNG" alt="">
+                    <h2 class="pieces-slider__text">Spring</h2>
+                </div>
+                <div class="pieces-slider__slide">
+                    <img class="pieces-slider__image" src="../static/images/shan-shan/daily/IMG_3476.JPG" alt="">
+                    <h2 class="pieces-slider__text">Summer</h2>
+                </div>
+                <div class="pieces-slider__slide">
+                    <img class="pieces-slider__image" src="../static/images/shan-shan/daily/IMG_3611.JPG" alt="">
+                    <h2 class="pieces-slider__text">Autumn</h2>
+                </div>
+                <div class="pieces-slider__slide">
+                    <img class="pieces-slider__image" src="../static/images/shan-shan/daily/IMG_3612.JPG" alt="">
+                    <h2 class="pieces-slider__text">Winter</h2>
+                </div>
+                <!-- Canvas to draw the pieces -->
+                <canvas class="pieces-slider__canvas"></canvas>
+                <!-- Slider buttons: prev and next -->
+                <button class="pieces-slider__button pieces-slider__button--prev">prev</button>
+                <button class="pieces-slider__button pieces-slider__button--next">next</button>
+            </div>
+        </div>
+    </main>
+    <script src='../static/js/anime_2.0.js'></script>
+    <script src='../static/js/pieces.js'></script>
+    <script>
+        (function () {
+            // Get all images and texts, get the `canvas` element, and save slider length
+            var sliderCanvas = document.querySelector('.pieces-slider__canvas');
+            var imagesEl = [].slice.call(document.querySelectorAll('.pieces-slider__image'));
+            var textEl = [].slice.call(document.querySelectorAll('.pieces-slider__text'));
+            var slidesLength = imagesEl.length;
+
+            // Define indexes related variables and functions
+            var currentIndex = 0, currentImageIndex, currentTextIndex, currentNumberIndex;
+            // Update current indexes for image, text and number
+            function updateIndexes() {
+                currentImageIndex = currentIndex * 3;
+                currentTextIndex = currentImageIndex + 1;
+                currentNumberIndex = currentImageIndex + 2;
+            }
+            updateIndexes();
+            var textIndexes = [];
+            var numberIndexes = [];
+
+            // Some other useful variables
+            var windowWidth = window.innerWidth;
+            var piecesSlider;
+
+            // Options for images
+            var imageOptions = {
+                angle: 45,
+                extraSpacing: { extraX: 100, extraY: 200 },
+                piecesWidth: function () { return Pieces.random(50, 200); },
+                ty: function () { return Pieces.random(-400, 400); }
+            };
+
+            // Options for texts
+            var textOptions = {
+                color: 'white',
+                backgroundColor: '#5104ab',
+                fontSize: function () { return windowWidth > 720 ? 50 : 30; },
+                padding: '15 20 10 20',
+                angle: -45,
+                piecesSpacing: 2,
+                extraSpacing: { extraX: 0, extraY: 300 },
+                piecesWidth: function () { return Pieces.random(50, 200); },
+                ty: function () { return Pieces.random(-200, 200); },
+                translate: function () {
+                    if (windowWidth > 1120) return { translateX: 200, translateY: 200 };
+                    if (windowWidth > 720) return { translateX: 0, translateY: 200 };
+                    return { translateX: 0, translateY: 100 };
+                }
+            };
+
+            // Options for numbers
+            var numberOptions = {
+                color: 'white',
+                backgroundColor: '#5104ab',
+                fontSize: function () { return windowWidth > 720 ? 60 : 20; },
+                padding: function () { return windowWidth > 720 ? '18 35 10 38' : '18 25 10 28'; },
+                angle: 0,
+                piecesSpacing: 2,
+                extraSpacing: { extraX: 10, extraY: 10 },
+                piecesWidth: 35,
+                ty: function () { return Pieces.random(-200, 200); },
+                translate: function () {
+                    if (windowWidth > 1120) return { translateX: -340, translateY: -180 };
+                    if (windowWidth > 720) return { translateX: -240, translateY: -180 };
+                    return { translateX: -140, translateY: -100 };
+                }
+            };
+
+            // Build the array of items to draw using Pieces
+            var items = [];
+            var imagesReady = 0;
+            for (var i = 0; i < slidesLength; i++) {
+                // Wait for all images to load before initializing the slider and event listeners
+                var slideImage = new Image();
+                slideImage.onload = function () {
+                    if (++imagesReady == slidesLength) {
+                        initSlider();
+                        initEvents();
+                    }
+                };
+                // Push all elements for each slide with the corresponding options
+                items.push({ type: 'image', value: imagesEl[i], options: imageOptions });
+                items.push({ type: 'text', value: textEl[i].innerText, options: textOptions });
+                items.push({ type: 'text', value: i + 1, options: numberOptions });
+                // Save indexes
+                textIndexes.push(i * 3 + 1);
+                numberIndexes.push(i * 3 + 2);
+                // Set image src
+                slideImage.src = imagesEl[i].src;
+            }
+
+            // Initialize a Pieces instance with all items we want to draw
+            function initSlider() {
+                // Stop any current animation if the slider was initialized before
+                if (piecesSlider) {
+                    piecesSlider.stop();
+                }
+
+                // Save the new Pieces instance
+                piecesSlider = new Pieces({
+                    canvas: sliderCanvas,
+                    items: items,
+                    x: 'centerAll',
+                    y: 'centerAll',
+                    piecesSpacing: 1,
+                    fontFamily: ["'Helvetica Neue', sans-serif"],
+                    animation: {
+                        duration: function () { return Pieces.random(1000, 2000); },
+                        easing: 'easeOutQuint'
+                    },
+                    // debug: true
+                });
+
+                // Animate all numbers to rotate clockwise indefinitely
+                piecesSlider.animateItems({
+                    items: numberIndexes,
+                    duration: 20000,
+                    angle: 360,
+                    loop: true
+                });
+
+                // Show current items: image, text and number
+                showItems();
+            }
+
+            // Init Event Listeners
+            function initEvents() {
+                // Select prev or next slide using buttons
+                document.querySelector('.pieces-slider__button--prev').addEventListener('click', prevItem);
+                document.querySelector('.pieces-slider__button--next').addEventListener('click', nextItem);
+
+                // Select prev or next slide using arrow keys
+                document.addEventListener('keydown', function (e) {
+                    if (e.keyCode == 37) { // left
+                        prevItem();
+                    } else if (e.keyCode == 39) { // right
+                        nextItem();
+                    }
+                });
+
+                // Handle `resize` event
+                window.addEventListener('resize', resizeStart);
+            }
+
+            // Show current items: image, text and number
+            function showItems() {
+                // Show image pieces
+                piecesSlider.showPieces({
+                    items: currentImageIndex, 
+                    ignore: ['tx'], 
+                    singly: true, 
+                    update: (anim) => {
+                        // Stop the pieces animation at 60%, and run a new indefinitely animation of `ty` for each piece
+                        if (anim.progress > 60) {
+                            var piece = anim.animatables[0].target;
+                            var ty = piece.ty;
+                            anime.remove(piece);
+                            anime({
+                                targets: piece,
+                                ty: piece.h_ty < 300
+                                    ? [{ value: ty + 10, duration: 1000 }, { value: ty - 10, duration: 2000 }, { value: ty, duration: 1000 }]
+                                    : [{ value: ty - 10, duration: 1000 }, { value: ty + 10, duration: 2000 }, { value: ty, duration: 1000 }],
+                                duration: 2000,
+                                easing: 'linear',
+                                loop: true
+                            });
+                        }
+                    }
+                });
+                // Show pieces for text and number, using alternate `ty` values
+                piecesSlider.showPieces({ items: currentTextIndex });
+                piecesSlider.showPieces({ items: currentNumberIndex, ty: function (p, i) { return p.s_ty - [-3, 3][i % 2]; } });
+            }
+
+            // Hide current items: image, text and number
+            function hideItems() {
+                piecesSlider.hidePieces({ items: [currentImageIndex, currentTextIndex, currentNumberIndex] });
+            }
+
+            // Select the prev item: hide current items, update indexes, and show the new current item
+            function prevItem() {
+                hideItems();
+                currentIndex = currentIndex > 0 ? currentIndex - 1 : slidesLength - 1;
+                updateIndexes();
+                showItems();
+            }
+
+            // Select the next item: hide current items, update indexes, and show the new current item
+            function nextItem() {
+                hideItems();
+                currentIndex = currentIndex < slidesLength - 1 ? currentIndex + 1 : 0;
+                console.log("currentIndex",currentIndex);
+                setTimeout(()=>{location.href="./fireworks/index.html"},300)
+                updateIndexes();
+                showItems();
+            }
+
+            // Handle `resize` event
+
+            var initial = true, hideTimer, resizeTimer;
+
+            // User starts resizing, so wait 300 ms before reinitialize the slider
+            function resizeStart() {
+                if (initial) {
+                    initial = false;
+                    if (hideTimer) clearTimeout(hideTimer);
+                    sliderCanvas.classList.add('pieces-slider__canvas--hidden');
+                }
+                if (resizeTimer) clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(resizeEnd, 300);
+            }
+
+            // User ends resizing, then reinitialize the slider
+            function resizeEnd() {
+                initial = true;
+                windowWidth = window.innerWidth;
+                initSlider();
+                hideTimer = setTimeout(() => {
+                    sliderCanvas.classList.remove('pieces-slider__canvas--hidden');
+                }, 500);
+            }
+        })();
+
+    </script>
+</body>
+
+</html>

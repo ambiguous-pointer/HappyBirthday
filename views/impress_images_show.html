@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>relative rotations</title>
+  <link href="../../static/css/impress-common.css" rel="stylesheet" />
+  <style type="text/css" media="screen">
+    #overview {
+      background: none;
+      border: none;
+      box-shadow: none;
+      width: 1800px;
+      height: 1300px;
+    }
+
+    #overview div {
+      width: 100%;
+      height: 100%;
+    }
+
+    .step {
+      position: relative;
+      width: 960px;
+      height: 1280px;
+      padding: 40px 60px;
+      margin: 20px auto;
+
+      box-sizing: border-box;
+
+      line-height: 1.5;
+
+      /* background-color: yellow; */
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+
+      text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 40pt;
+      letter-spacing: -1px;
+      border: solid 2px red;
+
+      opacity: 20%;
+    }
+
+    .step.active {
+      opacity: 100%;
+    }
+
+    .step.ring2 {
+      /* background-color: cyan; */
+    }
+
+    .step.box {
+      /* background-color: purple; */
+      opacity: 70%;
+    }
+
+    .step.box1 {
+      background-color: lightblue;
+    }
+  </style>
+  <style>
+    #ring1-1>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-701f6d5c-1ae1-4f57-ad0c-c236c881338e-2880-2160.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-2>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-d0f8c123-eda2-4b6d-a929-bc073a5208c4-2880-2160.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-3>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-d5fdbbbe-23f8-4326-9a39-ad350d07716d-1440-1080.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-4>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-4ae5940e-1318-4f51-95a4-33fe513b5c42-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-5>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-56ef5db8-b750-46c3-b156-14e7640cebfc-1440-1080.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-6>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-20511f69-7c5b-48c4-8152-d848f2acb439-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-7>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-5caa678f-ed88-4b11-8b53-49ead19f5c45-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring1-8>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-00c262d3-d66b-4343-9dae-4793a7ffb4ba-2662-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+  </style>
+  <style>
+    #ring2-1>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-87bf90c8-cf93-428d-8d88-04fc57e66edc-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-2>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-0111b24f-27e1-4764-8174-d9b1ebe23fe1-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-3>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-dd287e9e-f98f-4883-98b3-9cf8b1a49d33-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-4>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-00c262d3-d66b-4343-9dae-4793a7ffb4ba-2662-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-5>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-554943b1-b041-49e5-88da-5eb093d108eb-1440-1080.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-6>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-720619ad-3f36-4c59-9fd2-2f17ac2747d1-1440-1080.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-7>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-5caa678f-ed88-4b11-8b53-49ead19f5c45-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    #ring2-8>:first-child {
+      width: 100%;
+      height: 100%;
+      background-image: url('../static/images/shan-shan/image-6931e74a-f516-42d2-b5a9-c2dd5f729c51-2133-1600.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+  </style>
+</head>
+
+<body class="impress-not-supported">
+  <div id="impress" data-width="2000" data-height="1500">
+    <div id="overview" class="step overview" data-rel-position="relative" data-x="-1000" data-y="-1500" data-z="100"
+      data-scale="3" data-rotate-x="45" data-rotate-y="10">
+      <div>
+        <h2>何其有幸</h2>
+        <p>年岁并进<br>
+          岁去千般皆如意<br>
+          今年万事定称心</p>
+        <p>愿你快乐、旧疾当愈、平安顺遂、万事胜意</p>
+      </div>
+    </div>
+
+    <div id="ring1-1" class="step" data-rel-reset="all" data-x="0" data-y="0" data-z="0" data-rotate-y="10">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-2" class="step" data-rel-rotate-y="45" data-rel-z="-340" data-rel-x="820">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-3" class="step">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-4" class="step">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-5" class="step">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-6" class="step">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-7" class="step">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring1-8" class="step">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-1" class="step ring2" data-rel-reset="all" data-x="-500" data-y="0" data-z="-1514" data-rotate-x="90"
+      data-rotate-y="270" data-rotate-z="0">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-2" class="step ring2" data-rel-rotate-y="45" data-rel-z="-354" data-rel-x="854" data-rel-y="0">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-3" class="step ring2">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-4" class="step ring2">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-5" class="step ring2">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-6" class="step ring2">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-7" class="step ring2">
+      <div>
+      </div>
+    </div>
+
+    <div id="ring2-8" class="step ring2">
+      <div>
+      </div>
+    </div>
+  </div>
+
+  <div id="impress-toolbar"></div>
+  <div id="impress-help"></div>
+  <div style="display: none;">
+    <audio id="myAudio" controls autoplay loop>
+      <source src="../static/musics/7204085795212823357.mp3" type="audio/mp3">
+      Your browser does not support the audio tag.
+    </audio>
+  </div>
+
+  <script type="text/javascript" src="../../static/js/impress.js"></script>
+  <script>
+    impress().init();
+    var audio = document.getElementById("myAudio");
+    audio.play();
+    audio.playbackRate = 1.5;
+
+    var rootElement = document.getElementById("impress");
+    rootElement.addEventListener("impress:stepleave", function (event) {
+      var currentStep = event.target;
+      var nextStep = event.detail.next;
+      console.log("Left the Step Element '" + currentStep.id + "' and about to enter '" + nextStep.id);
+    });
+    rootElement.addEventListener("impress:stepenter", function (event) {
+      var currentStep = event.target;
+      console.log("Entered the Step Element '" + currentStep.id + "'");
+      if (currentStep.id == "ring2-8") {
+        setTimeout(() => { location.href = "./impress_index.html"; }, 2000);
+      }
+    });
+  </script>
+</body>
+
+</html>

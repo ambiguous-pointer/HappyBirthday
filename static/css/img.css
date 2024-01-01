@@ -292,7 +292,7 @@ form button:hover {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border: 10px solid #fff;
+    /* border: 10px solid #fff; */
     border-radius: 4px;
 }
 
@@ -328,13 +328,16 @@ form button:hover {
 }
 
 .left .img-li {
+    min-width: 50px;
+    min-height: 250px;
     position: absolute;
-    display: none;
+    /* display: none; */
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    border: 10px solid #fff;
-    border-radius: 4px;
+    background-color: cornflowerblue;
+    padding: 20px;
+    border: 2px solid #fff;
+    border-radius: 10px;
 }
 
 .left img {
