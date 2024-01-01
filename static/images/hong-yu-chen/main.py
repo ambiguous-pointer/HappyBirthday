@@ -13,7 +13,12 @@ def getFileNamesByPath(path):
         elif os.path.isfile(pathTmp):
             if os.path.splitext(pathTmp)[-1] != ".py":
                 # print(pathTmp)
-                targetObject = cv2.imread(pathTmp).shape
+                img  = cv2.imread(pathTmp)
+                if img  is  None:
+                    print(f"Error reading image: {pathTmp}")
+                    continue
+                else:
+                    targetObject = img.shape
                 s = "".join(["image-",str(uuid.uuid4()),"-",str(targetObject[0]),"-",str(targetObject[1]),os.path.splitext(pathTmp)[-1]])
                 print(os.path.join(path,s))
                 os.rename(pathTmp,os.path.join(path,s))
