@@ -711,9 +711,9 @@
             function showItems() {
                 // Show image pieces
                 piecesSlider.showPieces({
-                    items: currentImageIndex, 
-                    ignore: ['tx'], 
-                    singly: true, 
+                    items: currentImageIndex,
+                    ignore: ['tx'],
+                    singly: true,
                     update: (anim) => {
                         // Stop the pieces animation at 60%, and run a new indefinitely animation of `ty` for each piece
                         if (anim.progress > 60) {
@@ -754,8 +754,7 @@
             function nextItem() {
                 hideItems();
                 currentIndex = currentIndex < slidesLength - 1 ? currentIndex + 1 : 0;
-                console.log("currentIndex",currentIndex);
-                setTimeout(()=>{location.href="./fireworks/index.html"},300)
+                currentIndex == 3 ? setTimeout(() => {  }, 300) : console.log("currentIndex", currentIndex);;
                 updateIndexes();
                 showItems();
             }
